@@ -20,5 +20,6 @@ if [ ! -d "/usr/local/bin/wp" ]; then
 	wp core install --url=localhost --title="Your Blog Title" --admin_name=$MYSQL_ADMIN --admin_password=$MYSQL_ADMIN_PASSWORD --admin_email=you@example.com --allow-root
 fi
 
-echo "Starting wordpress server.."
-wp server --port=9000 --host=0.0.0.0 --allow-root
+# wp server --port=9000 --host=0.0.0.0 --allow-root
+mkdir -p /run/php/
+/usr/sbin/php-fpm7.3 -F -R #F for forground, -R for root

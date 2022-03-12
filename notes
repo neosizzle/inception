@@ -13,3 +13,4 @@ wp core download  --allow-root
 wp config create --dbhost=nszl-mariadb --dbname=wordpress --dbuser=jnguser --dbpass="Passw0rduser" --allow-root
 chmod 644 wp-config.php
 wp core install --url=localhost --title="Your Blog Title" --admin_name=jngroot --admin_password=Passw0rdroot --admin_email=you@example.com --allow-root
+https://www.google.com/search?q=upstream+prematurely+closed+connection+while+reading+response+header+from+upstream+fastcgi&oq=upstream+prematurely+closed+connection+while+reading+response+header+from+upstream+fastcgi&aqs=chrome..69i57.2749j0j4&sourceid=chrome&ie=UTF-8
