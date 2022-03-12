@@ -1,6 +1,16 @@
 version: "3.3"
 services:
-  # ngs
+  # nginx:
+  #   container_name: nszl-nginx
+  #   build: requirements/nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./static:/var/www/html
+  #   networks:
+  #     - frontend
+  #   restart: always
   mariadb:
     container_name: nszl-mariadb
     build: requirements/mariadb
