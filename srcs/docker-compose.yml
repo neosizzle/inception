@@ -28,6 +28,12 @@ services:
     #   - ./static:/wp_site
     ports:
       - "9000:9000"
+    environment:
+      MYSQL_ADMIN: ${MYSQL_ADMIN}
+      MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+      MYSQL_USER : ${MYSQL_USER}
+      MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+      WORDPRESS_DATABASE : ${WORDPRESS_DATABASE}
     networks:
       - backend
       - frontend
