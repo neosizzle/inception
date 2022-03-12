@@ -10,7 +10,11 @@ if [ ! -d "/usr/local/bin/wp" ]; then
 	chmod +x wp-cli.phar
 	mv wp-cli.phar /usr/local/bin/wp
 
-	wp core download  --allow-root
+	#download wp core files
+	wp core download --path=./wp_site/wordpress --allow-root
+
+	#configure wp and install
+	cd ./wp_site/wordpress
 	wp config create --dbhost=nszl-mariadb --dbname=$WORDPRESS_DATABASE --dbuser=$MYSQL_ADMIN --dbpass="$MYSQL_ADMIN_PASSWORD" --allow-root
 	chmod 644 wp-config.php
 	wp core install --url=localhost --title="Your Blog Title" --admin_name=$MYSQL_ADMIN --admin_password=$MYSQL_ADMIN_PASSWORD --admin_email=you@example.com --allow-root
