@@ -8,3 +8,8 @@ https://stackoverflow.com/questions/1795176/how-to-change-mysql-data-directory
 
 wp
 https://www.rosehosting.com/blog/how-to-install-wordpress-with-nginx-on-debian-10/
+https://blog.sucuri.net/2015/08/wp-cli-guide-installing-wordpress.html
+wp core download  --allow-root
+wp config create --dbhost=asdf@db.com --dbname=wordpress --dbuser=jnguser --dbpass="Passw0rduser" --allow-root
+chmod 644 wp-config.php --allow-root
+wp core install --url=localhost --title="Your Blog Title" --admin_name=jngroot --admin_password=Passw0rdroot --admin_email=you@example.com --allow-root

@@ -1,4 +1,4 @@
-# copy to custom data directory and grant all permissions if directory not exist
+# copy to custom data directory (init) and grant all permissions if directory not exist
 cp -n -r /var/lib/mysql/* /docker_mysqldata # -n is no overwrite, -r is recursive
 chmod -R 777 /docker_mysqldata
 
