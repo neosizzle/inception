@@ -5,8 +5,6 @@ FROM debian:buster
 RUN apt update
 RUN apt install -yqq php-cgi php-common php-fpm php-pear php-mbstring php-zip php-net-socket php-gd php-xml-util php-gettext php-mysql php-bcmath unzip mariadb-client wget git
 
-# RUN chown -R www-data:www-data /var/www/html/wordpress
-
 #install vim for dev
 RUN apt install -yqq nano
 
