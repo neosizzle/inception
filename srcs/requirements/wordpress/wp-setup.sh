@@ -19,8 +19,30 @@ if [ ! -d "/wp_site/wordpress" ];
 	cd ./wp_site/wordpress
 	wp config create --dbhost=nszl-mariadb --dbname=$WORDPRESS_DATABASE --dbuser=$MYSQL_ADMIN --dbpass="$MYSQL_ADMIN_PASSWORD" --allow-root
 	chmod 644 wp-config.php
+
+	#additional wp config
+	head -n 85 ./wp-config.php > tempcfg.php
+	#set site url and root dir
+	echo "define('WP_SITEURL', 'https://localhost/wordpress');" >> tempcfg.php
+	echo "define('WP_HOME', 'https://localhost/wordpress');" >> tempcfg.php
+
+	#set redis variables
+	echo "define( 'WP_REDIS_HOST', 'nszl-redis' );" >> tempcfg.php
+	echo "define( 'WP_REDIS_PORT', 6379 );" >> tempcfg.php
+	echo "define( 'WP_REDIS_TIMEOUT', 1 );" >> tempcfg.php
+	echo "define( 'WP_REDIS_READ_TIMEOUT', 1 );" >> tempcfg.php
+	echo "define( 'WP_REDIS_DATABASE', 0 );" >> tempcfg.php
+	tail -n +87 ./wp-config.php >> tempcfg.php
+
+	mv tempcfg.php wp-config.php
 	wp core install --url=localhost --title="Your Blog Title" --admin_name=$MYSQL_ADMIN --admin_password=$MYSQL_ADMIN_PASSWORD --admin_email=you@example.com --allow-root
 
+	#install redis plugin
+	wp plugin install redis-cache --allow-root
+	wp plugin update --all --allow-root
+	
+	#enable redis
+	wp redis enable --allow-root
 	else
 	echo "Wordpress is already installed.."
 fi

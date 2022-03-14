@@ -19,17 +19,25 @@ services:
       - backend
     restart : unless-stopped
 
+  redis:
+    container_name: nszl-redis
+    build: requirements/redis
+    expose: 
+      - "6379"
+    networks:
+      - frontend
+    restart : unless-stopped
+
   wordpress:
     depends_on :
       - mariadb
+      - redis
     container_name: nszl-wordpress
     build: requirements/wordpress
     volumes:
       - ./static:/wp_site
     expose :
       - "9000"
-    # ports :
-    #   - "9000:9000"
     environment:
       MYSQL_ADMIN: ${MYSQL_ADMIN}
       MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}

@@ -49,15 +49,15 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',          '$?u8R%<Ois.}}B^*jJO8Fr8`5X>0*eGEp-5o|Yp>Vd>A&=Bm2 E,*(j_NkGgl 3a' );
-define( 'SECURE_AUTH_KEY',   'JbTU=GFb[<T]c$@C5F`Nyw3BNZj>?DxkB<<%mbFYN[IFeKmlJnaSkON}O#)ID9_H' );
-define( 'LOGGED_IN_KEY',     '2,Byki~hGN>:$OvLQO6!OHOFAKD[f=bLkr1ox-#_4F/X67eh_T#,AQv/QKPfs1n&' );
-define( 'NONCE_KEY',         'b&Hlx;v31$OcP;;D XHk_w,`kjc/+/X{k];qwp1F6Qi2D#/<kSrPJ@y22-a[]c>|' );
-define( 'AUTH_SALT',         '+3}l-:is^;Ov/{?l6Qn#e`n*_1s@otfP?eVc=/qMiR|vm}W,g:kg+:&[I/G#,T&g' );
-define( 'SECURE_AUTH_SALT',  'j*R[iZ^EZM*)aMtlR!zR*0^tGg[Yn/NqOIdeHP+W750.KM3|S`u+N(u^!R]O[w}e' );
-define( 'LOGGED_IN_SALT',    'ufG)H=/^nS}+cbE X;FvaeLPO)Z3g.O@QeltA;?NcaDmyy/IfOH9r&~%_k~NOBr8' );
-define( 'NONCE_SALT',        'rqVcL`6`-M:u3Mpsp[y1jntnU08 $@< 2V,X60&TPT)MD.#j}zV:ESOvrj!:fZ]b' );
-define( 'WP_CACHE_KEY_SALT', '?iGQb-RH42{Dbw}#wzFrwSPt1]{$un3XTQ:wc-/GR0ZPdU+6C^bH;^OqN/#?JM!r' );
+define( 'AUTH_KEY',          '-/&[*bQ&3=Y|y3kvQ2T<tMA=Y-6TJn.V]CLt-V8U$TVz5EC<MN8xr@5?D#W7],Hs' );
+define( 'SECURE_AUTH_KEY',   'SOUjN0W i]t|$ [U`#X3sN>mY@^v@4o8%@eY9-z>Yb!fI(NC2d/y/q:`o>xn5-|l' );
+define( 'LOGGED_IN_KEY',     'eDbhitKyUL0;j<PmF?1l/HXSCkBilRDQNt74IfNZro}%F2]T?DF^IG 3*fY/a`YY' );
+define( 'NONCE_KEY',         '(t; s<vY60v}lO{?fb}3d=x0UHsHhkEKi*&>0EImR8/2ZgcP`99E !Rz+Oak9p|}' );
+define( 'AUTH_SALT',         '/UEB0:b6ZU4^14 . BbSoB*0P:cjukt/vWw|i9T{Ff]D)XbGe OQ-4-h/uWITooG' );
+define( 'SECURE_AUTH_SALT',  'V,Rh*}dN40,BZrlr^J@GE>E<YSHNtm|;, {$T>e6Xz?)LR%aRC-*n(>i^0Y=TMZy' );
+define( 'LOGGED_IN_SALT',    '5BeD-INdFiXmQ=#,>`$Tdc-f}8kGG_L9i>&N!?sd21fC`wPoXAB/p1dD(qZ9hGxU' );
+define( 'NONCE_SALT',        'n}~T%E=bY39*lmsDGpKQSM@o%hLR VitAvlhhXqP&k5.&FY>Srxc4i8RdWM&QH8/' );
+define( 'WP_CACHE_KEY_SALT', '=Na 9Pf3if^VM@dav1L7jlV*n@5 l=v{V7V2U/[+RwXnf-Bp(cG|3&O86: S<!lg' );
 
 
 /**#@-*/
@@ -83,7 +83,13 @@ $table_prefix = 'wp_';
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
 define( 'WP_DEBUG', false );
-
+define('WP_SITEURL', 'https://localhost/wordpress');
+define('WP_HOME', 'https://localhost/wordpress');
+define( 'WP_REDIS_HOST', 'nszl-redis' );
+define( 'WP_REDIS_PORT', 6379 );
+define( 'WP_REDIS_TIMEOUT', 1 );
+define( 'WP_REDIS_READ_TIMEOUT', 1 );
+define( 'WP_REDIS_DATABASE', 0 );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
