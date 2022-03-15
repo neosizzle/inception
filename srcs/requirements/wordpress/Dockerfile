@@ -15,9 +15,7 @@ COPY ./wp-setup.sh /
 COPY ./conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 COPY ./conf/www.conf /etc/php7/php-fpm.d/www.conf
 
-#copy wp config
-# COPY ./conf/my-wp-config.php /
-
+#expose 9000 for fastcgi
 EXPOSE 9000
 
 #blocking command, configure php and wordpress
