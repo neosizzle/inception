@@ -11,4 +11,7 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean re fclean all
+linux_hostadd :
+	sudo echo "127.0.0.1 jng.42.fr" >> /etc/hosts
+
+.PHONY : clean re fclean all linux_hostadd

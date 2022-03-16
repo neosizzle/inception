@@ -50,4 +50,5 @@ fi
 
 #make directory to contain php fpm socket
 mkdir -p /run/php/
+echo "===============STARTING WP SERVICE================"
 /usr/sbin/php-fpm7.3 -F -R #F for forground, -R for root

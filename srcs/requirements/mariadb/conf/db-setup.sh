@@ -18,4 +18,6 @@ echo "SELECT user from mysql.user;" | mysql
 /etc/init.d/mysql stop
 
 #run sql on foreground
+echo "===============STARTING MARIADB SERVICE================"
+
 mysqld_safe --skip-syslog --log-error=logs.log

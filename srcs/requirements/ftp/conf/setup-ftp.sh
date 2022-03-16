@@ -15,4 +15,5 @@ chown -R $FTP_USR:$FTP_USR static/
 echo $FTP_USR | tee -a /etc/vsftpd.userlist
 
 #start vsftpd
+echo "===============STARTING FTP SERVICE================"
 /usr/sbin/vsftpd

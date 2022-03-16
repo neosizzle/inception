@@ -5,4 +5,5 @@ git clone https://github.com/vrana/adminer.git adminer
 cp -r adminer/* /var/www/html
 
 #run apache in forground (needed by adminer)
+echo "===============STARTING ADMINER SERVICE================"
 apachectl -D FOREGROUND
