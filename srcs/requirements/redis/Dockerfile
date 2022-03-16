@@ -15,7 +15,7 @@ COPY ./conf/setup-redis.sh /
 EXPOSE 6379
 
 #install vim for dev
-RUN apt install -yqq nano
+# RUN apt install -yqq nano
 
 #run setup script
 CMD ["bash", "setup-redis.sh"]

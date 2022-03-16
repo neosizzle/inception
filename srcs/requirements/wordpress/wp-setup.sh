@@ -40,6 +40,7 @@ if [ ! -d "/wp_site/wordpress" ];
 	#install redis plugin
 	wp plugin install redis-cache --allow-root
 	wp plugin update --all --allow-root
+	wp plugin activate redis-cache --allow-root
 	
 	#enable redis
 	wp redis enable --allow-root

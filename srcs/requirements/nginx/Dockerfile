@@ -18,7 +18,7 @@ COPY ./conf/ssl-params.conf /etc/nginx/snippets/
 COPY ./conf/default.conf  /etc/nginx/sites-available/default
 
 #install vim for dev
-RUN apt install -yqq nano
+# RUN apt install -yqq nano
 
 #expose port 80 and 443
 EXPOSE 80

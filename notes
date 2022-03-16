@@ -20,9 +20,14 @@ https://servebolt.com/help/article/configuring-wordpress-with-redis-from-the-com
 https://wordpress.org/support/topic/how-to-set-up-redis-to-work-remotely/
 wp plugin install redis-cache --allow-root
 wp plugin update --all --allow-root
+wp plugin activate redis-cache --allow-root
 
 adminer:
 https://www.xmodulo.com/set-web-based-database-management-system-adminer.html
 
 ftp:
 https://phoenixnap.com/kb/install-ftp-server-on-ubuntu-vsftpd
+
+make fclean : stop containers, remove volumes
+make clean: stop containers
+make : docker-compose up --build
