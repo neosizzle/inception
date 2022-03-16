@@ -1,46 +1,46 @@
 version: "3.3"
 services:
 
-  # mariadb:
-  #   container_name: nszl-mariadb
-  #   build: requirements/mariadb
-  #   expose:
-  #     - "3306"
-  #   volumes:
-  #     # - /home/jng/data-incep:/docker_mysqldata
-  #     - ~/data-incep:/docker_mysqldata
-  #   environment:
-  #     MYSQL_ADMIN: ${MYSQL_ADMIN}
-  #     MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
-  #     MYSQL_USER : ${MYSQL_USER}
-  #     MYSQL_PASSWORD : ${MYSQL_PASSWORD}
-  #     WORDPRESS_DATABASE : ${WORDPRESS_DATABASE}
-  #   networks:
-  #     - backend
-  #   restart : unless-stopped
+  mariadb:
+    container_name: nszl-mariadb
+    build: requirements/mariadb
+    expose:
+      - "3306"
+    volumes:
+      # - /home/jng/data-incep:/docker_mysqldata
+      - ~/data-incep:/docker_mysqldata
+    environment:
+      MYSQL_ADMIN: ${MYSQL_ADMIN}
+      MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+      MYSQL_USER : ${MYSQL_USER}
+      MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+      WORDPRESS_DATABASE : ${WORDPRESS_DATABASE}
+    networks:
+      - backend
+    restart : unless-stopped
 
-  # redis:
-  #   container_name: nszl-redis
-  #   build: requirements/redis
-  #   expose: 
-  #     - "6379"
-  #   networks:
-  #     - frontend
-  #   restart : unless-stopped
+  redis:
+    container_name: nszl-redis
+    build: requirements/redis
+    expose: 
+      - "6379"
+    networks:
+      - frontend
+    restart : unless-stopped
 
-  # ftp:
-  #   container_name: nszl-ftp
-  #   build: requirements/ftp
-  #   ports: 
-  #     - "20:20"
-  #     - "21:21"
-  #     - "21100-21110:21100-21110"
-  #   volumes:
-  #     - ./static:/static
-  #   environment:
-  #     FTP_USR: ${FTP_USR}
-  #     FTP_PWD: ${FTP_PWD}
-  #   restart : unless-stopped
+  ftp:
+    container_name: nszl-ftp
+    build: requirements/ftp
+    ports: 
+      - "20:20"
+      - "21:21"
+      - "21100-21110:21100-21110"
+    volumes:
+      - ./static:/static
+    environment:
+      FTP_USR: ${FTP_USR}
+      FTP_PWD: ${FTP_PWD}
+    restart : unless-stopped
 
   mongodb:
     image: mongo:5.0
@@ -52,51 +52,51 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
 
-  # adminer:
-  #   depends_on :
-  #     - mariadb
-  #   container_name: nszl-adminer
-  #   build: requirements/adminer
-  #   ports: 
-  #     - "8088:80"
-  #   networks:
-  #     - backend
-  #   restart : unless-stopped
+  adminer:
+    depends_on :
+      - mariadb
+    container_name: nszl-adminer
+    build: requirements/adminer
+    ports: 
+      - "8088:80"
+    networks:
+      - backend
+    restart : unless-stopped
 
-  # wordpress:
-  #   depends_on :
-  #     - mariadb
-  #     - redis
-  #   container_name: nszl-wordpress
-  #   build: requirements/wordpress
-  #   volumes:
-  #     - ./static:/wp_site
-  #   expose :
-  #     - "9000"
-  #   environment:
-  #     MYSQL_ADMIN: ${MYSQL_ADMIN}
-  #     MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
-  #     MYSQL_USER : ${MYSQL_USER}
-  #     MYSQL_PASSWORD : ${MYSQL_PASSWORD}
-  #     WORDPRESS_DATABASE : ${WORDPRESS_DATABASE}
-  #   networks:
-  #     - backend
-  #     - frontend
-  #   restart : unless-stopped
+  wordpress:
+    depends_on :
+      - mariadb
+      - redis
+    container_name: nszl-wordpress
+    build: requirements/wordpress
+    volumes:
+      - ./static:/wp_site
+    expose :
+      - "9000"
+    environment:
+      MYSQL_ADMIN: ${MYSQL_ADMIN}
+      MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+      MYSQL_USER : ${MYSQL_USER}
+      MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+      WORDPRESS_DATABASE : ${WORDPRESS_DATABASE}
+    networks:
+      - backend
+      - frontend
+    restart : unless-stopped
 
-  # nginx:
-  #   depends_on:
-  #     - wordpress
-  #   container_name: nszl-nginx
-  #   build: requirements/nginx
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - ./static:/var/www/html
-  #   networks:
-  #     - frontend
-  #   restart: unless-stopped
+  nginx:
+    depends_on:
+      - wordpress
+    container_name: nszl-nginx
+    build: requirements/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./static:/var/www/html
+    networks:
+      - frontend
+    restart: unless-stopped
 
 networks:
   frontend:
