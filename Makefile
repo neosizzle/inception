@@ -1,8 +1,8 @@
 all:
-	docker-compose --project-directory srcs/ up --build
+	docker-compose --project-directory ./srcs up --build
 
 clean :
-	docker-compose --project-directory srcs/ down
+	docker-compose --project-directory ./srcs down
 
 fclean : clean
 	sudo rm -rf ./srcs/static/wordpress
