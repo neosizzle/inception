@@ -1,5 +1,5 @@
 all:
-	cd srcs && docker-compose up --build -p inception
+	cd srcs && docker-compose -p inception up --build
 
 clean :
 	cd srcs && docker-compose down
