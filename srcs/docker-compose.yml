@@ -88,7 +88,8 @@ services:
       - frontend
     restart: unless-stopped
 
-  tty-clock:
+  python:
+    container_name: nszl-python
     image :  python
     depends_on:
       - nginx
