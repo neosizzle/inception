@@ -6,12 +6,16 @@ clean :
 
 fclean : clean
 	sudo rm -rf ./srcs/static/wordpress
-	sudo rm -rf ~/data-incep:/docker_mysqldata
-	sudo rm -rf  ~/data-incep-bonus
+	sudo rm -rf /home/jng/data-incep
+	sudo rm -rf /home/jng/data-incep-bonus
 
 re : fclean all
 
 linux_hostadd :
 	sudo echo "127.0.0.1 jng.42.fr" >> /etc/hosts
+	@echo "jng.42.fr > localhost"
 
-.PHONY : clean re fclean all linux_hostadd
+prune : fclean
+	docker system prune
+
+.PHONY : clean re fclean all linux_hostadd prune

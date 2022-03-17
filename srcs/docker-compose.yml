@@ -7,8 +7,8 @@ services:
     expose:
       - "3306"
     volumes:
-      # - /home/jng/data-incep:/docker_mysqldata
-      - ~/data-incep:/docker_mysqldata
+      - /home/jng/data-incep:/docker_mysqldata
+      # - ~/data-incep:/docker_mysqldata
     environment:
       MYSQL_ADMIN: ${MYSQL_ADMIN}
       MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
@@ -47,7 +47,8 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ~/data-incep-bonus:/data/db
+      - /home/jng/data-incep-bonus:/data/db
+      # - ~/data-incep-bonus:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
