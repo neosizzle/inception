@@ -42,17 +42,6 @@ services:
       FTP_PWD: ${FTP_PWD}
     restart : unless-stopped
 
-  mongodb:
-    image: mongo:5.0
-    ports:
-      - 27017:27017
-    volumes:
-      - /home/jng/data-incep-bonus:/data/db
-      # - ~/data-incep-bonus:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-
   adminer:
     depends_on :
       - mariadb
@@ -98,6 +87,14 @@ services:
     networks:
       - frontend
     restart: unless-stopped
+
+  tty-clock:
+    image :  python
+    depends_on:
+      - nginx
+    tty: true
+    stdin_open: true
+    restart : unless-stopped
 
 networks:
   frontend:

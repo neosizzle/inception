@@ -31,3 +31,5 @@ https://phoenixnap.com/kb/install-ftp-server-on-ubuntu-vsftpd
 make fclean : stop containers, remove volumes
 make clean: stop containers
 make : docker-compose up --build
+
+vm, i installed ssh, sudo, docker and git. Portforwarded ssh port and https port
