@@ -6,8 +6,7 @@ clean :
 
 fclean : clean
 	sudo rm -rf ./srcs/static/wordpress
-	sudo rm -rf /home/jng/data-incep
-	sudo rm -rf /home/jng/data-incep-bonus
+	sudo rm -rf /home/jng/data
 
 re : fclean all
 

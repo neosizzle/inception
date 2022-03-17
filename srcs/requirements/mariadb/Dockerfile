@@ -16,6 +16,8 @@ COPY ./conf/db-setup.sh .
 
 #copy my config
 COPY ./conf/my.cnf /etc/mysql/my.cnf
+COPY ./conf/mysql_init .
+
 
 RUN mkdir -p docker_mysqldata
 
