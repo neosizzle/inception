@@ -1,6 +1,6 @@
 # copy to custom data directory (init) and grant all permissions if directory not exist
-cp -n -r /var/lib/mysql/* /docker_mysqldata # -n is no overwrite, -r is recursive
-chmod -R 777 /docker_mysqldata
+# cp -n -r /var/lib/mysql/* /docker_mysqldata # -n is no overwrite, -r is recursive
+# chmod -R 777 /docker_mysqldata
 
 # # start mysql
 # /etc/init.d/mysql start
@@ -18,8 +18,38 @@ chmod -R 777 /docker_mysqldata
 # # stop mysql
 # /etc/init.d/mysql stop
 
+#mkdir for mysql unix socket
+mkdir -p /run/mysqld
+chown -R mysql:mysql /run/mysqld
+
+#if there is no mysql default files
+if [ ! -d "/var/lib/mysql/mysql" ]
+then
+	#install mysql default files 
+	mysql_install_db --datadir=/var/lib/mysql
+
+	#create bootstrap file
+	echo \
+	"
+	FLUSH PRIVILEGES;
+	CREATE USER IF NOT EXISTS  '$MYSQL_ADMIN'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';
+	CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+	GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_ADMIN'@'%';
+	GRANT SELECT ON * . * TO '$MYSQL_USER'@'%';
+	CREATE DATABASE IF NOT EXISTS $WORDPRESS_DATABASE;
+	SELECT user from mysql.user;
+	ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
+	FLUSH PRIVILEGES;
+	"\
+	 > temp.sql
+
+	#insert into db as mysql user
+	mysqld --user=mysql --bootstrap < temp.sql;
+else
+	echo "[INFO] mysql is already initialized..."
+fi
 #run sql on foreground
 echo "===============STARTING MARIADB SERVICE================"
 
-# mysqld_safe --skip-syslog --log-error=logs.log
-tail -f
+# mysqld_safe --skip-syslog --log-error=logs. scrapped, need root and does not allow me to input pw
+exec mysqld --user=mysql --console

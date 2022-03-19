@@ -2,11 +2,12 @@ all:
 	cd srcs && docker-compose -p inception up --build
 
 clean :
-	cd srcs && docker-compose down
+	cd srcs && docker-compose down -v  --remove-orphans  
 
 fclean : clean
 	sudo rm -rf ./srcs/static/wordpress
 	sudo rm -rf /home/jng/data
+	sudo rm -rf /home/jng/test
 
 re : fclean all
 

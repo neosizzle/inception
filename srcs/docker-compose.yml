@@ -7,7 +7,7 @@ services:
     expose:
       - "3306"
     volumes:
-      - /home/jng/data:/docker_mysqldata
+      - /home/jng/data:/var/lib/mysql
       # - ~/data-incep:/docker_mysqldata
     environment:
       MYSQL_ADMIN: ${MYSQL_ADMIN}
@@ -101,3 +101,11 @@ services:
 networks:
   frontend:
   backend:
+
+# volumes:
+#   bind-test:
+#     driver: local
+#     driver_opts:
+#         type: none
+#         o: bind
+#         device: /home/jng/test
