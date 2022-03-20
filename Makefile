@@ -7,6 +7,7 @@ clean :
 fclean : clean
 	sudo rm -rf /home/jng/inception/srcs/static/wordpress
 	sudo rm -rf static/wordpress
+	sudo rm -rf /home/jng/data/*
 	# sudo rm -rf /home/jng/test
 
 re : fclean all
