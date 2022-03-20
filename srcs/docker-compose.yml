@@ -121,4 +121,5 @@ volumes:
     driver_opts:
         type: none
         o: bind
-        device: ./static
+        device: /home/jng/inception/srcs/static
+        # device: ./static #wsl
