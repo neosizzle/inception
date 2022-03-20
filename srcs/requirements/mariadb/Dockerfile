@@ -16,7 +16,6 @@ COPY ./conf/db-setup.sh .
 
 #copy my config
 COPY ./conf/my.cnf /etc/mysql/my.cnf
-COPY ./conf/mysql_init .
 
 #run database setup script
 CMD ["bash", "db-setup.sh"]

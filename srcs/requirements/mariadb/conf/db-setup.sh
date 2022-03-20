@@ -27,27 +27,28 @@ if [ ! -d "/var/lib/mysql/mysql" ]
 then
 	#install mysql default files 
 	mysql_install_db --datadir=/var/lib/mysql
-
-	#create bootstrap file
-	echo \
-	"
-	FLUSH PRIVILEGES;
-	CREATE USER IF NOT EXISTS  '$MYSQL_ADMIN'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';
-	CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
-	GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_ADMIN'@'%';
-	GRANT SELECT ON * . * TO '$MYSQL_USER'@'%';
-	CREATE DATABASE IF NOT EXISTS $WORDPRESS_DATABASE;
-	SELECT user from mysql.user;
-	ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
-	FLUSH PRIVILEGES;
-	"\
-	 > temp.sql
-
-	#insert into db as mysql user
-	mysqld --user=mysql --bootstrap < temp.sql;
 else
 	echo "[INFO] mysql is already initialized..."
 fi
+
+#create bootstrap file
+echo \
+"
+FLUSH PRIVILEGES;
+CREATE USER IF NOT EXISTS  '$MYSQL_ADMIN'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';
+CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+CREATE DATABASE IF NOT EXISTS $WORDPRESS_DATABASE;
+GRANT ALL PRIVILEGES ON $WORDPRESS_DATABASE.* TO '$MYSQL_ADMIN'@'%';
+GRANT ALL PRIVILEGES ON $WORDPRESS_DATABASE.* TO '$MYSQL_USER'@'%';
+SELECT user from mysql.user;
+ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
+FLUSH PRIVILEGES;
+"\
+	> temp.sql
+
+#insert into db as mysql user
+mysqld --user=mysql --bootstrap < temp.sql;
+
 #run sql on foreground
 echo "===============STARTING MARIADB SERVICE================"
 

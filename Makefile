@@ -2,12 +2,12 @@ all:
 	cd srcs && docker-compose -p inception up --build
 
 clean :
-	cd srcs && docker-compose down -v  --remove-orphans  
+	cd srcs && docker-compose down  --remove-orphans  
 
 fclean : clean
 	sudo rm -rf ./srcs/static/wordpress
 	sudo rm -rf /home/jng/data
-	sudo rm -rf /home/jng/test
+	# sudo rm -rf /home/jng/test
 
 re : fclean all
 
@@ -17,5 +17,6 @@ linux_hostadd :
 
 prune : fclean
 	docker system prune
+	#docker volume rm $(docker volume ls -q)
 
 .PHONY : clean re fclean all linux_hostadd prune
