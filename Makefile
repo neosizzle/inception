@@ -5,8 +5,6 @@ clean :
 	cd srcs && docker-compose down  --remove-orphans  
 
 fclean : clean
-	sudo rm -rf ./srcs/static/wordpress
-	sudo rm -rf /home/jng/data
 	# sudo rm -rf /home/jng/test
 
 re : fclean all

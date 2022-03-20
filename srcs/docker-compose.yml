@@ -40,7 +40,7 @@ services:
       - "21:21"
       - "21100-21110:21100-21110"
     volumes:
-      - ./static:/static
+      - static-incep:/static
     environment:
       FTP_USR: ${FTP_USR}
       FTP_PWD: ${FTP_PWD}
@@ -66,7 +66,7 @@ services:
     build: requirements/wordpress
     image: wordpress
     volumes:
-      - ./static:/wp_site
+      - static-incep:/wp_site
     expose :
       - "9000"
     environment:
@@ -90,7 +90,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./static:/var/www/html
+      - static-incep:/var/www/html
     networks:
       - frontend
     restart: unless-stopped
@@ -115,3 +115,10 @@ volumes:
         type: none
         o: bind
         device: /home/jng/data
+
+  static-incep:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: ./static
